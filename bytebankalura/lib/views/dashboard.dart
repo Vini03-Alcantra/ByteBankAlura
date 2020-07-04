@@ -1,3 +1,4 @@
+import 'package:bytebankalura/views/contatos.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatelessWidget {
@@ -21,6 +22,9 @@ class Dashboard extends StatelessWidget {
             child: Material(
               color: Colors.green[500],
               child: InkWell(
+                onTap: (){
+                  return MaterialPageRoute(builder: (context) => ContatosLista());
+                },
                 child: Container(  
                   padding: EdgeInsets.all(8.0),
                   height: 100,
