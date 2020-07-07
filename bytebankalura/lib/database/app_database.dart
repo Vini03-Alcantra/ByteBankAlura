@@ -1,3 +1,4 @@
+import 'package:bytebankalura/models/contato.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -16,4 +17,14 @@ Future<Database> createDatabase(){
       }, version: 1
     );
    });
+}
+
+Future<int> save(Contato contato){
+  return createDatabase().then((value){
+    final Map<String, dynamic> contatoMap = Map();
+    contatoMap['id'] = contato.id;
+    contatoMap['nome'] = contato.name;
+    contatoMap['numero_conta'] = contato.numeroConta;
+    return value.insert("contatos", contatoMap)
+  });
 }
