@@ -25,6 +25,19 @@ Future<int> save(Contato contato){
     contatoMap['id'] = contato.id;
     contatoMap['nome'] = contato.name;
     contatoMap['numero_conta'] = contato.numeroConta;
-    return value.insert("contatos", contatoMap)
+    return value.insert("contatos", contatoMap);
   });
+}
+
+void findAll(){
+  createDatabase().then((db){
+    return db.query('contatos').then((maps){
+      final List<Contato> contatos = List();
+      for (Map<String, dynamic> map in maps) {
+        final Contato contato = Contato(map['id'], map['nome'], map['numero_conta']);
+        contatos.add(contato);
+      }
+      return contatos;
+    });
+  }); 
 }
