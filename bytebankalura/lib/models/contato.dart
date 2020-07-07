@@ -1,8 +1,9 @@
 class Contato{
+  final int id;
   final String name;
   final int numeroConta;
 
-  Contato(this.name, this.numeroConta);
+  Contato(this.id, this.name, this.numeroConta);
 
   
 }
