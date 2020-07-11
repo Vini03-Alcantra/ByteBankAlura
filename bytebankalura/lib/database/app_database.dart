@@ -28,12 +28,13 @@ Future<int> save(Contato contato){
   });
 }
 
-void findAll(){
-  createDatabase().then((db){
+Future<List<Contato>> findAll(){
+ return createDatabase().then((db){
     return db.query('contatos').then((maps){
       final List<Contato> contatos = List();
       for (Map<String, dynamic> map in maps) {
         final Contato contato = Contato(map['id'], map['nome'], map['numero_conta']);
+        
         contatos.add(contato);
       }
       return contatos;

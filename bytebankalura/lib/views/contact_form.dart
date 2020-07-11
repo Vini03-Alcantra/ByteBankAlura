@@ -1,5 +1,6 @@
 import 'package:bytebankalura/models/contato.dart';
 import 'package:flutter/material.dart';
+import 'package:bytebankalura/database/app_database.dart';
 
 class ContactForm extends StatefulWidget {
   @override
@@ -49,8 +50,11 @@ class _ContactFormState extends State<ContactForm> {
                   child: Text("Criar"),
                   onPressed: (){
                     final String name = _nameController.text;
+                    debugPrint(name);
                     final int numeroConta = int.tryParse(_accountNumberController.text);
+                    debugPrint(numeroConta.toString());
                     final Contato contato = Contato(0, name, numeroConta);
+                    save(contato);
                     Navigator.pop(context, contato);
                   }
                 ),

@@ -1,3 +1,4 @@
+import 'package:bytebankalura/database/app_database.dart';
 import 'package:bytebankalura/models/contato.dart';
 import 'package:bytebankalura/views/contact_form.dart';
 import 'package:flutter/material.dart';
@@ -6,18 +7,29 @@ class ContatosLista extends StatelessWidget {
   final List<Contato> contatos = List();
 
   @override
-  Widget build(BuildContext context) {
-    contatos.add(Contato(0, "Jubão", 1000));
+  Widget build(BuildContext context) {    
+    contatos.add(Contato(0, "Enzo", 100));
     return Scaffold(
       appBar: AppBar(
         title: Text("Contatos Lista"),
       ),
-      body: ListView.builder(
-        itemCount: contatos.length,
-        itemBuilder: (BuildContext context, int index) {  
-          final Contato contato = contatos[index];
-          return ContatoItem(contato);
-        },        
+      body: FutureBuilder(
+        future: findAll(),
+        builder: (context, snapshot){
+          if (snapshot.data == null) {
+            return Center(child: CircularProgressIndicator());
+          } else {
+            final List<Contato> contatos = snapshot.data;
+            return ListView.builder(
+              itemCount: contatos.length,
+              itemBuilder: (BuildContext context, int index) {  
+                final Contato contato = contatos[index];
+                return ContatoItem(contato);
+              },        
+            );
+          }
+          
+        }
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
