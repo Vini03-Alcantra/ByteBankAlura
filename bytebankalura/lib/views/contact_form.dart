@@ -49,13 +49,10 @@ class _ContactFormState extends State<ContactForm> {
                 child: RaisedButton(
                   child: Text("Criar"),
                   onPressed: (){
-                    final String name = _nameController.text;
-                    debugPrint(name);
-                    final int numeroConta = int.tryParse(_accountNumberController.text);
-                    debugPrint(numeroConta.toString());
+                    final String name = _nameController.text;                    
+                    final int numeroConta = int.tryParse(_accountNumberController.text);                    
                     final Contato contato = Contato(0, name, numeroConta);
-                    save(contato);
-                    Navigator.pop(context, contato);
+                    save(contato).then((id) => Navigator.pop(context));
                   }
                 ),
               ),

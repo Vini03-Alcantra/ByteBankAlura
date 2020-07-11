@@ -14,7 +14,8 @@ Future<Database> createDatabase(){
           'nome TEXT, '
           'numero_conta INTEGER) '
         );        
-      }, version: 1
+      }, version: 1,
+      onDowngrade: onDatabaseDowngradeDelete
     );
    });
 }
@@ -34,7 +35,7 @@ Future<List<Contato>> findAll(){
       final List<Contato> contatos = List();
       for (Map<String, dynamic> map in maps) {
         final Contato contato = Contato(map['id'], map['nome'], map['numero_conta']);
-        
+
         contatos.add(contato);
       }
       return contatos;

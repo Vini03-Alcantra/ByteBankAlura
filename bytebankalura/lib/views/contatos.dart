@@ -33,10 +33,7 @@ class ContatosLista extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => ContactForm()))
-          .then((res){
-            debugPrint(res.toString());
-          });
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => ContactForm()));          
         },
         child: Icon(
           Icons.add
