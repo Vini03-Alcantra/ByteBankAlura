@@ -3,17 +3,21 @@ import 'package:bytebankalura/models/contato.dart';
 import 'package:bytebankalura/views/contact_form.dart';
 import 'package:flutter/material.dart';
 
-class ContatosLista extends StatelessWidget {
-  final List<Contato> contatos = List();
-
+class ContatosLista extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {    
-    contatos.add(Contato(0, "Enzo", 100));
+  _ContatosListaState createState() => _ContatosListaState();
+}
+
+class _ContatosListaState extends State<ContatosLista> {  
+  final List<Contato> contatos = List();
+  @override
+  Widget build(BuildContext context) {      
     return Scaffold(
       appBar: AppBar(
         title: Text("Contatos Lista"),
       ),
-      body: FutureBuilder(
+      body: FutureBuilder<List<Contato>>(
+        initialData: List(),
         future: findAll(),
         builder: (context, snapshot){
           if (snapshot.data == null) {
