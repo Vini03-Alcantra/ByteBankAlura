@@ -3,6 +3,11 @@ import 'package:sqflite/sqflite.dart';
 import 'package:bytebankalura/database/app_database.dart';
 
 class ContactDao {
+static const String tableSql = 'CREATE TABLE contatos( '
+          'id INTEGER PRIMARY KEY, ' 
+          'nome TEXT, '
+          'numero_conta INTEGER) ';
+
   Future<int> save(Contato contato) async {
     final Database db = await getDatabase();
     final Map<String, dynamic> contatoMap = Map();    
