@@ -6,7 +6,6 @@ class TransactionsList extends StatelessWidget {
   final List<Transaction> transactions = List();
   @override
   Widget build(BuildContext context) {
-    transactions.add(Transaction(value: 100.0, contato: Contato(0, "Vinícius", 1000)));
     return Scaffold(
       appBar: AppBar(
         title: Text("Transactions"),
