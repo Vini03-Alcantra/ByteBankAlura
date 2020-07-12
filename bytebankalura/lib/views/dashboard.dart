@@ -1,4 +1,5 @@
 import 'package:bytebankalura/views/contatos.dart';
+import 'package:bytebankalura/views/transactions_list.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatelessWidget {
@@ -19,8 +20,8 @@ class Dashboard extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              _FeatureItem(nome: "Transfet", icone: Icons.monetization_on,),
-              _FeatureItem(nome: "linha de Transação", icone: Icons.description,)
+              _FeatureItem(nome: "Transfet", icone: Icons.monetization_on, onClick: _showContatosLista,),
+              _FeatureItem(nome: "linha de Transação", icone: Icons.description, onClick: () => _showtransactionsList(context))
             ],
           )
           
@@ -28,13 +29,25 @@ class Dashboard extends StatelessWidget {
       ),
     );
   }
+
+  void _showContatosLista(BuildContext context){
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => ContatosLista())
+    );
+  }
+
+  void _showtransactionsList(BuildContext context){
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => TransactionsList())
+    );
+  }
 }
 
 class _FeatureItem extends StatelessWidget {
   final String nome;
   final IconData icone;
-
-  const _FeatureItem({Key key, this.nome, this.icone}) : super(key: key);
+  final Function onClick;
+  const _FeatureItem({Key key, this.nome, this.icone, @required this.onClick}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +56,7 @@ class _FeatureItem extends StatelessWidget {
       child: Material(
         color: Colors.green[500],
         child: InkWell(
-          onTap: (){
-            return Navigator.push(context, MaterialPageRoute(builder: (context) => ContatosLista()));
-          },
+          onTap: () => onClick(),
           child: Container(  
             padding: EdgeInsets.all(8.0),
             height: 100,
