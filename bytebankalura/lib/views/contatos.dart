@@ -1,4 +1,5 @@
 import 'package:bytebankalura/database/app_database.dart';
+import 'package:bytebankalura/database/dao/contact_dao.dart';
 import 'package:bytebankalura/models/contato.dart';
 import 'package:bytebankalura/views/contact_form.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ class ContatosLista extends StatefulWidget {
 
 class _ContatosListaState extends State<ContatosLista> {  
   final List<Contato> contatos = List();
+  final ContactDao _dao = ContactDao();
   @override
   Widget build(BuildContext context) {      
     return Scaffold(
@@ -18,7 +20,7 @@ class _ContatosListaState extends State<ContatosLista> {
       ),
       body: FutureBuilder<List<Contato>>(
         initialData: List(),
-        future: findAll(),
+        future: _dao.findAll(),
         builder: (context, snapshot){
           if (snapshot.data == null) {
             return Center(child: CircularProgressIndicator());
