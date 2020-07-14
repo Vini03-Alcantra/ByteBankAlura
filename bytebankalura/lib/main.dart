@@ -11,5 +11,4 @@ void main(){
     home: Home()
   )
   );
-  save(Transaction(value: 200.0, contato: Contato(0, "Adriano", 2000)));
 }

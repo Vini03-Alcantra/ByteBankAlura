@@ -2,6 +2,7 @@ import 'package:bytebankalura/database/app_database.dart';
 import 'package:bytebankalura/database/dao/contact_dao.dart';
 import 'package:bytebankalura/models/contato.dart';
 import 'package:bytebankalura/views/contact_form.dart';
+import 'package:bytebankalura/views/transaction_form.dart';
 import 'package:flutter/material.dart';
 
 class ContatosLista extends StatefulWidget {
@@ -30,7 +31,14 @@ class _ContatosListaState extends State<ContatosLista> {
               itemCount: contatos.length,
               itemBuilder: (BuildContext context, int index) {  
                 final Contato contato = contatos[index];
-                return ContatoItem(contato);
+                return ContatoItem(
+                  contato,
+                  () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => TransactionForm(contato: contato))
+                    );
+                  }
+                 );
               },        
             );
           }
@@ -51,11 +59,13 @@ class _ContatosListaState extends State<ContatosLista> {
 
 class ContatoItem extends StatelessWidget {
   final Contato contato;
-  ContatoItem(this.contato);
+  final Function onClick;
+  ContatoItem(this.contato, this.onClick);
   @override
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
+        onTap: () => onClick(),
         title: Text(
           contato.name,
           style: TextStyle(  

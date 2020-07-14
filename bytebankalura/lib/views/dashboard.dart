@@ -20,7 +20,7 @@ class Dashboard extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              _FeatureItem(nome: "Transfet", icone: Icons.monetization_on, onClick: _showContatosLista,),
+              _FeatureItem(nome: "Transfer", icone: Icons.monetization_on, onClick: _showContatosLista,),
               _FeatureItem(nome: "linha de Transação", icone: Icons.description, onClick: () => _showtransactionsList(context))
             ],
           )
