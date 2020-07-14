@@ -15,13 +15,12 @@ class TransactionsList extends StatelessWidget {
         future: findAll(),
         builder: (context, snapshot){
           if(snapshot.data == null){
-            return Center(child: CircularProgressIndicator());
+            return CenteredMessage(message: "Aguarde enaqunto procuramos",);
           }else if(snapshot.hasError){
-            return Center(child: Text("Deu erro"));
+            return CenteredMessage(message: "URL Indisponível", icon: Icons.error_outline,);
           }else{
             final List<Transaction> transactions = snapshot.data;          
-            if (transactions.isEmpty) {
-              print("Chegou aqui");
+            if (transactions.isEmpty) {              
               return CenteredMessage(message: "Transações não encontradas", icon: Icons.warning,);
             } else {                          
             return ListView.builder(
