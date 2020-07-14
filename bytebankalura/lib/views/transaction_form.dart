@@ -1,3 +1,4 @@
+import 'package:bytebankalura/http/webclient.dart';
 import 'package:bytebankalura/models/contato.dart';
 import 'package:bytebankalura/models/transaction.dart';
 import 'package:flutter/material.dart';
@@ -58,6 +59,11 @@ class _TransactionFormState extends State<TransactionForm> {
                     onPressed: (){
                       final double value = double.tryParse(_valueController.text);
                       final transactionCreated = Transaction(value: value, contato: widget.contato);
+                      save(transactionCreated).then((transaction){
+                        if (transaction != null) {
+                          Navigator.pop(context);
+                        }
+                      });
                     }
                   ),
               )
