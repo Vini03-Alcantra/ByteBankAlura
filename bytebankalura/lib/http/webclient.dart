@@ -3,20 +3,7 @@ import 'package:http/http.dart';
 import 'dart:convert';
 import 'package:bytebankalura/models/transaction.dart';
 import 'package:bytebankalura/models/contato.dart';
-class LoggingInterceptor implements InterceptorContract{
-  @override
-  Future<RequestData> interceptRequest({RequestData data}) async {
-    print(data);
-    return data;
-  }
-
-  @override 
-  Future<ResponseData> interceptResponse({ResponseData data}) async {
-    print(data);
-    return data;
-  }
-}
-
+import 'package:bytebankalura/http/interceptors/logging_interceptors.dart';
 final Client client = HttpClientWithInterceptor.build(
   interceptors: [LoggingInterceptor()]
 );
