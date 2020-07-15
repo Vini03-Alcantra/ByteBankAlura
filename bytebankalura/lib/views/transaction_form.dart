@@ -61,7 +61,7 @@ class _TransactionFormState extends State<TransactionForm> {
                       final transactionCreated = Transaction(value: value, contato: widget.contato);
                       save(transactionCreated).then((transaction){
                         if (transaction != null) {
-                          Navigator.pop(context);
+                          Navigator.pop(context);   
                         }
                       });
                     }
