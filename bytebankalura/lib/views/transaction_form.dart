@@ -1,4 +1,4 @@
-import 'package:bytebankalura/http/webclient.dart';
+import 'package:bytebankalura/http/webclients/transaction_webclient.dart';
 import 'package:bytebankalura/models/contato.dart';
 import 'package:bytebankalura/models/transaction.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +13,7 @@ class TransactionForm extends StatefulWidget {
 
 class _TransactionFormState extends State<TransactionForm> {
   final TextEditingController _valueController = TextEditingController();
+  TransactionWebClient transactionWebClient = TransactionWebClient();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +60,7 @@ class _TransactionFormState extends State<TransactionForm> {
                     onPressed: (){
                       final double value = double.tryParse(_valueController.text);
                       final transactionCreated = Transaction(value: value, contato: widget.contato);
-                      save(transactionCreated).then((transaction){
+                      transactionWebClient.save(transactionCreated).then((transaction){
                         if (transaction != null) {
                           Navigator.pop(context);   
                         }

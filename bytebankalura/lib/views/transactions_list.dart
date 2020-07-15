@@ -1,10 +1,11 @@
 import 'package:bytebankalura/components/centered_message.dart';
-import 'package:bytebankalura/http/webclient.dart';
+import 'package:bytebankalura/http/webclients/transaction_webclient.dart';
 import 'package:bytebankalura/models/transaction.dart';
 import 'package:flutter/material.dart';
 
 class TransactionsList extends StatelessWidget {
   
+  TransactionWebClient transactionWebClient = TransactionWebClient();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +13,7 @@ class TransactionsList extends StatelessWidget {
         title: Text("Transactions"),
       ),
       body: FutureBuilder<List<Transaction>>(  
-        future: findAll(),
+        future: transactionWebClient.findAll(),
         builder: (context, snapshot){
           if(snapshot.data == null){
             return CenteredMessage(message: "Aguarde enaqunto procuramos",);
